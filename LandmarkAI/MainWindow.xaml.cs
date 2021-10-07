@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,17 @@ namespace LandmarkAI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnSelectImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image files (*.png *.jpg *.jpeg)|*.png;*.jpg;*.jpeg";
+            if (dialog.ShowDialog() == true)
+            {
+                string fileName = dialog.FileName;
+                selectedImage.Source = new BitmapImage(new Uri(fileName));
+            }
         }
     }
 }
