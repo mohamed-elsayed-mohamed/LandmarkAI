@@ -7,8 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnSelectImage" Content="Select Image" Width="120" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 10 0 0" Click="btnSelectImage_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Button x:Name="btnSelectImage" Content="Select Image" Width="120" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 10 0 0" Click="btnSelectImage_Click"/>
 
-        <Image x:Name="selectedImage" Margin="0 50 0 0" Stretch="Uniform"/>
+            <Image x:Name="selectedImage" Margin="0 50 0 0" Stretch="Uniform"/>
+        </Grid>
+        <ListView x:Name="lvPredictions" Grid.Column="1" Width="200">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Tag" Width="100" DisplayMemberBinding="{Binding tagName}"/>
+                    <GridViewColumn Header="Probability" Width="100" DisplayMemberBinding="{Binding Path=probability, Mode=OneWay, StringFormat=P2}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
